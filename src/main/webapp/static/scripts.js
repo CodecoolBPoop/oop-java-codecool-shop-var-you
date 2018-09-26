@@ -1,5 +1,8 @@
 $(".cart-button").click(function () {
     $.get("/cart-request", function (data) {
-        console.log($.parseJSON(data))
+        var cartItems = $.parseJSON(data);
+        for (var i = 0; i < cartItems.length; i++) {
+            console.log(cartItems[i]);
+        }
     })
 });

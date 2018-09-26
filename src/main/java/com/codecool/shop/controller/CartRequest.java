@@ -50,12 +50,12 @@ public class CartRequest extends HttpServlet {
 
         //create Json Object
         JSONArray arrayJson = new JSONArray();
-        JSONObject obj = new JSONObject();
 
         for(Product product : cartContent) {
-           obj.put("name", product.getName());
-           obj.put("price", product.getPrice());
-           arrayJson.add(obj);
+            JSONObject obj = new JSONObject();
+            obj.put("name", product.getName());
+            obj.put("price", product.getPrice());
+            arrayJson.add(obj);
         }
 
         // finally output the json string
