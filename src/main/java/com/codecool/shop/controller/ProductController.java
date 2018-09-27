@@ -72,6 +72,6 @@ public class ProductController extends HttpServlet {
         WebContext context = new WebContext(req, resp, req.getServletContext());
 
         shoppingCart.add(productDataStore.find(Integer.parseInt(req.getParameter("id"))));
-        resp.sendRedirect(req.getContextPath() + "/");
+        resp.sendRedirect(req.getHeader("referer"));
     }
 }
