@@ -8,10 +8,13 @@
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     border-radius: 0px;
+    height: 330px;
 }
 .thumbnail img
 {
     margin-top: 10px;
+    height: 200px;
+    width: 300px;
 }
 .item.list-group-item
 {
@@ -61,7 +64,28 @@
     margin: 0 0 11px;
 }
 
+.navcontainer{
+    margin: 5px;
+}
+#dropdownMenuButton1, #dropdownMenuButton2{
+    float:left;
+    margin: 5px;
+}
+
+#viewcartbutton{
+    float:right;
+    margin-right: 15px;
+}
+
+.dropdown-menu{
+    margin-top:40px;
+}
 .cart-button
 {
     float: right;
+}
+
+.header{
+    margin-bottom: 10px;
+    padding: 30px 0px;
 }

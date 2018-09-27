@@ -31,21 +31,19 @@
 
 <body>
 
-<div class="jumbotron text-center">
+<div class="jumbotron text-center header">
     <h1>Codecool Shop</h1>
-    <div th:replace="shopping_cart.html :: cart"></div>
+
 </div>
 
 <div class="container">
-    <div class="well well-sm">
-        <strong th:text="${category.name}">Category Title</strong>
-    </div>
+    <div th:replace="navbar.html :: copy"></div>
 
     <div id="products" class="row list-group">
 
         <div class="item col-xs-4 col-lg-4" th:each="prod,iterStat : ${products}">
             <div class="thumbnail">
-                <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" th:attr="src='/static/img/product_' + ${prod.id} + '.jpg'" alt="" />
+                <img class="group list-group-image itemimg" src="http://placehold.it/400x250/000/fff" th:attr="src='/static/img/product_' + ${prod.id} + '.jpg'" alt="" />
                 <div class="caption">
                     <h4 class="group inner list-group-item-heading" th:text="${prod.name}">Product name</h4>
                     <p class="group inner list-group-item-text" th:text="${prod.description}">Product description... </p>
@@ -56,7 +54,7 @@
                         <div class="col-xs-12 col-md-6">
                             <form method="post" action="/">
                                 <button class="btn btn-success add_to_cart" type="submit"  th:value="${prod.getId()}"
-                                        name="id">+ Add to cart</button>
+                                        name="id" >+ Add to cart</button>
                             </form>
                         </div>
                         </div>
@@ -65,7 +63,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 <div th:replace="footer.html :: copy"></div>
