@@ -60,6 +60,8 @@ public class CartRequest extends HttpServlet {
 
         // finally output the json string
         out.println(arrayJson.toJSONString());
+        arrayJson.clear();
+
 
     }
 
