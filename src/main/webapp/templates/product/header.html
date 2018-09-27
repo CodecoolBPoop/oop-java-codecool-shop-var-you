@@ -23,6 +23,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
+    <script src="static/scripts.js" defer></script>
 
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
 </head>
@@ -30,6 +31,7 @@
 
 <div th:fragment="heading" class="jumbotron text-center">
     <h1>Codecool Shop</h1>
+    <div th:replace="shopping_cart.html :: cart"></div>
 </div>
 <div th:replace="index.html :: index"></div>
 

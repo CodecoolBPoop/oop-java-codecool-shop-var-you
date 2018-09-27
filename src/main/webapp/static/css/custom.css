@@ -65,3 +65,8 @@
 {
     float: right;
 }
+
+#success {
+    text-align: center;
+    font-size: 20px;
+}

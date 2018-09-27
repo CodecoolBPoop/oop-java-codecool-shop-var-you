@@ -1,10 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="product/header.html :: headr"></head>
 <body>
-$END$
+<div th:replace="product/header.html :: heading"></div>
+
+<div class="idejonnekacuccok">
+    <input class="idejonnekacuccok" placeholder="First name"><br><br>
+    <input class="idejonnekacuccok" placeholder="Last name"><br><br>
+    <input class="idejonnekacuccok" placeholder="Country"><br><br>
+    <input class="idejonnekacuccok" placeholder="Postal code"><br><br>
+    <input class="idejonnekacuccok" placeholder="City"><br><br>
+    <input class="idejonnekacuccok" placeholder="Address"><br><br>
+    <input class="idejonnekacuccok" placeholder="E-mail"><br><br>
+
+    <a class="idejonnekacuccok" href="/success"><button>Purchase</button></a>
+
+</div>
+
+<div th:replace="footer.html :: copy"></div>
 </body>
 </html>

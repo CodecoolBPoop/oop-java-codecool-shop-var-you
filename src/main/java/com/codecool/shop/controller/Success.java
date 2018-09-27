@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebServlet(urlPatterns = "/checkout")
-public class Checkout extends HttpServlet {
+@WebServlet(urlPatterns = "/success")
+public class Success extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -21,7 +21,7 @@ public class Checkout extends HttpServlet {
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(request.getServletContext());
         WebContext context = new WebContext(request, response, request.getServletContext());
 
-        engine.process("product/checkout.html", context, response.getWriter());
+        engine.process("product/success.html", context, response.getWriter());
 
 
 
