@@ -32,6 +32,9 @@ public class ProductController extends HttpServlet {
         ProductDao productDataStore = ProductDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
         SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
+        HashMap<String, String> websiteName = new HashMap<>();
+        websiteName.put("name", "CodeCool Survival Shop");
+
 
 //        Map params = new HashMap<>();
 //        params.put("category", productCategoryDataStore.find(1));
@@ -50,8 +53,8 @@ public class ProductController extends HttpServlet {
             context.setVariable("category", supplierDataStore.find(Integer.parseInt(req.getParameter("supplier"))));
             context.setVariable("products", productDataStore.getBy(supplierDataStore.find(Integer.parseInt(req.getParameter("supplier")))));
         } else {
-            context.setVariable("category", productCategoryDataStore.find(1));
-            context.setVariable("products", productDataStore.getBy(productCategoryDataStore.find(1)));
+            context.setVariable("category", websiteName);
+            context.setVariable("products", productDataStore.getAll());
         }
         engine.process("product/index.html", context, resp.getWriter());
     }
@@ -71,3 +74,4 @@ public class ProductController extends HttpServlet {
         shoppingCart.add(productDataStore.find(Integer.parseInt(req.getParameter("id"))));
         resp.sendRedirect(req.getContextPath() + "/");
     }
+}

@@ -3,26 +3,35 @@
 <body>
 
 <div th:fragment="copy">
-    <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Filter by Category
-        </button>
-        <div class="dropdown-menu list-group" aria-labelledby="dropdownMenuButton">
-            <div class="item col-xs-4 col-lg-4" th:each="cat,iter : ${allproducts}">
-                <a class="dropdown-item" th:text="${cat.name}" th:href="@{/(category=${cat.id})}">Action</a>
-            </div>
-        </div>
+
+    <div class="container navcontainer">
+            <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Filter by Category
+                    </button>
+                    <div class="dropdown-menu list-group" aria-labelledby="dropdownMenuButton">
+                        <div class="item col-xs-4 col-lg-4" th:each="cat,iter : ${allproducts}">
+                            <a class="dropdown-item" th:text="${cat.name}" th:href="@{/(category=${cat.id})}">Action</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Filter by Supplier
+                    </button>
+                    <div class="dropdown-menu list-group" aria-labelledby="dropdownMenuButton">
+                        <div class="item col-xs-4 col-lg-4" th:each="sup,iter : ${allsuppliers}">
+                            <a class="dropdown-item" th:text="${sup.name}" th:href="@{/(supplier=${sup.id})}">Action</a>
+                        </div>
+                    </div>
+                </div>
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="viewcartbutton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        View Cart
+                    </button>
     </div>
-    <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Filter by Supplier
-        </button>
-        <div class="dropdown-menu list-group" aria-labelledby="dropdownMenuButton">
-            <div class="item col-xs-4 col-lg-4" th:each="sup,iter : ${allsuppliers}">
-                <a class="dropdown-item" th:text="${sup.name}" th:href="@{/(supplier=${sup.id})}">Action</a>
-            </div>
-        </div>
-    </div>
+
+
+
     <div class="well well-sm">
         <strong th:text="${category.name}">Category Title</strong>
     </div>
