@@ -14,7 +14,7 @@ $(".cart-button").click(function () {
 
             console.log(cartItems[i]);
         }
-        stringBuilder.push('<tr> <td>' + "TOTAL:  " , cartItems[cartItems.length -1].total, " USD" + '</td>');
+       // stringBuilder.push('<tr> <td>' + "TOTAL:  " , cartItems[cartItems.length -1].total, " USD" + '</td>');
         $(".cart-table").empty();
         $(".cart-table").append(stringBuilder.join(""));
         console.log(cartItems);
