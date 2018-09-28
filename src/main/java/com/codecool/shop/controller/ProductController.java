@@ -71,7 +71,14 @@ public class ProductController extends HttpServlet {
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
 
-        shoppingCart.add(productDataStore.find(Integer.parseInt(req.getParameter("id"))));
+        if (req.getParameter("id") != null) {
+            shoppingCart.add(productDataStore.find(Integer.parseInt(req.getParameter("id"))));
+        } else if (req.getParameter("add") != null) {
+            shoppingCart.add(productDataStore.find(Integer.parseInt(req.getParameter("add"))));
+        } else if (req.getParameter("remove") != null) {
+            shoppingCart.remove(Integer.parseInt(req.getParameter("remove")));
+        }
+
         resp.sendRedirect(req.getHeader("referer"));
     }
 }

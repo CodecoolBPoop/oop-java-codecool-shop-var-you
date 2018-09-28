@@ -14,6 +14,10 @@ public class ShoppingCartDaoMem implements ShoppingCartDao {
 
   private ShoppingCartDaoMem() { }
 
+  public float getTotalPrice() {
+    return totalPrice;
+  }
+
   public static ShoppingCartDao getInstance() {
     if (instance == null) {
       instance = new ShoppingCartDaoMem();
@@ -27,7 +31,8 @@ public class ShoppingCartDaoMem implements ShoppingCartDao {
   }
 
    public void remove(int id) {
-    CartItems.remove(find(id));
+     //totalPrice -= CartItems.(find(id)).getPrice();
+     CartItems.remove(find(id));
    }
 
   @Override
