@@ -21,11 +21,13 @@ public class CartRequest extends HttpServlet {
 
         /*cart setup */
         List<Product> cartContent = ShoppingCartDaoMem.getInstance().getAll();
-
+//        ShoppingCartDaoMem cart = null;
+        float total = 0;
 
         response.setContentType("text/html");
         response.setCharacterEncoding("utf-8");
         PrintWriter out = response.getWriter();
+        //total = cart.getTotalPrice();
 
         //create Json Array
         JSONArray arrayJson = new JSONArray();
@@ -37,6 +39,10 @@ public class CartRequest extends HttpServlet {
             obj.put("id", product.getId());
             arrayJson.add(obj);
         }
+
+        JSONObject obj = new JSONObject();
+        obj.put("total", total);
+        arrayJson.add(obj);
 
         // finally output the json string
         out.println(arrayJson.toJSONString());
