@@ -34,6 +34,7 @@ public class CartRequest extends HttpServlet {
             JSONObject obj = new JSONObject();
             obj.put("name", product.getName());
             obj.put("price", product.getPrice());
+            obj.put("id", product.getId());
             arrayJson.add(obj);
         }
 
