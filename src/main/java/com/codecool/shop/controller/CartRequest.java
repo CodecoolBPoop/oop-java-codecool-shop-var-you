@@ -1,5 +1,6 @@
 package com.codecool.shop.controller;
 
+
 import com.codecool.shop.dao.implementation.mem.ShoppingCartDaoMem;
 import com.codecool.shop.model.Product;
 import org.json.simple.JSONArray;
@@ -20,9 +21,10 @@ public class CartRequest extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse response) throws IOException {
 
         /*cart setup */
-        List<Product> cartContent = ShoppingCartDaoMem.getInstance().getAll();
-//        ShoppingCartDaoMem cart = null;
+        ShoppingCartDao shoppingCartDao = ShoppingCartDaoMem.getInstance();
+        List<Product> cartContent = shoppingCartDao.getAll();
         float total = 0;
+
 
         response.setContentType("text/html");
         response.setCharacterEncoding("utf-8");
