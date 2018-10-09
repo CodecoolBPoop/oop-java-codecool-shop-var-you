@@ -1,7 +1,7 @@
 package com.codecool.shop.controller;
 
-import com.codecool.shop.dao.ShoppingCartDao;
-import com.codecool.shop.dao.implementation.ShoppingCartDaoMem;
+
+import com.codecool.shop.dao.implementation.mem.ShoppingCartDaoMem;
 import com.codecool.shop.model.Product;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -23,11 +23,13 @@ public class CartRequest extends HttpServlet {
         /*cart setup */
         ShoppingCartDao shoppingCartDao = ShoppingCartDaoMem.getInstance();
         List<Product> cartContent = shoppingCartDao.getAll();
+        float total = 0;
 
 
         response.setContentType("text/html");
         response.setCharacterEncoding("utf-8");
         PrintWriter out = response.getWriter();
+        //total = cart.getTotalPrice();
 
         //create Json Array
         JSONArray arrayJson = new JSONArray();
@@ -36,8 +38,13 @@ public class CartRequest extends HttpServlet {
             JSONObject obj = new JSONObject();
             obj.put("name", product.getName());
             obj.put("price", product.getPrice());
+            obj.put("id", product.getId());
             arrayJson.add(obj);
         }
+
+        JSONObject obj = new JSONObject();
+        obj.put("total", total);
+        arrayJson.add(obj);
 
         // finally output the json string
         out.println(arrayJson.toJSONString());
