@@ -10,7 +10,9 @@ import java.util.Properties;
 public class Props {
     private static Props instance = null;
 
-    private Props() {}
+    private Props() {
+        this.getProperties();
+    }
 
     public static Props getInstance() {
         if (instance == null) {
@@ -32,10 +34,12 @@ public class Props {
             // load a properties file
             prop.load(input);
 
-            // get the property value and print it out
+            /*
             variables.put("database", prop.getProperty("database"));
             variables.put("username", prop.getProperty("dbuser"));
             variables.put("password", prop.getProperty("dbpassword"));
+            */
+            variables.put("DAOtype", prop.getProperty("DAOtype"));
 
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -50,6 +54,7 @@ public class Props {
         }
     }
 
+    /*
     public String getDatabase(){
         return variables.get("database");
     }
@@ -60,6 +65,12 @@ public class Props {
 
     public String getPassword(){
         return variables.get("password");
+    }
+
+    */
+
+    public String getDAOtype(){
+        return variables.get("DAOtype");
     }
 
 
