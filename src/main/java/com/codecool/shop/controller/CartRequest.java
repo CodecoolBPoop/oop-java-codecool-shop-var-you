@@ -1,6 +1,7 @@
 package com.codecool.shop.controller;
 
 
+import com.codecool.shop.dao.ShoppingCartDao;
 import com.codecool.shop.dao.implementation.mem.ShoppingCartDaoMem;
 import com.codecool.shop.model.Product;
 import org.json.simple.JSONArray;

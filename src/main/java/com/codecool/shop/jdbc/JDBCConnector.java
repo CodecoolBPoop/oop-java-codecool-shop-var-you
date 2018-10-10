@@ -1,11 +1,14 @@
 package com.codecool.shop.jdbc;
 
+import com.codecool.shop.config.Props;
+import com.codecool.shop.model.ProductCategory;
+
 import java.sql.*;
 
 public class JDBCConnector {
-  private static final String DATABASE = "jdbc:postgresql://localhost:5432/todolist";
-  private static final String DB_USER = "tilla";
-  private static final String DB_PASSWORD = "xxx";
+  private static final String DATABASE = "jdbc:postgresql://localhost:5432/codecoolshop";
+  private static final String DB_USER = Props.getInstance().getUsername();
+  private static final String DB_PASSWORD = Props.getInstance().getPassword();
   private static JDBCConnector instance = null;
 
   public Connection getConnection() {
@@ -30,6 +33,7 @@ public class JDBCConnector {
     return instance;
   }
 
+
   public ResultSet executeQuery(String query) throws SQLException {
     try {
       Connection connection = getConnection();
@@ -50,5 +54,7 @@ public class JDBCConnector {
       System.err.println();}
 
   }
+
+
 
 }
