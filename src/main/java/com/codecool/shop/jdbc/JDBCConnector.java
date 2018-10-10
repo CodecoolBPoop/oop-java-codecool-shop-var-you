@@ -1,11 +1,13 @@
 package com.codecool.shop.jdbc;
 
+import com.codecool.shop.config.Props;
 import java.sql.*;
 
 public class JDBCConnector {
-  private static final String DATABASE = "jdbc:postgresql://localhost:5432/todolist";
-  private static final String DB_USER = "tilla";
-  private static final String DB_PASSWORD = "xxx";
+  private static Props props = new Props();
+  private static final String DATABASE = props.getDatabase();
+  private static final String DB_USER = props.getUsername();
+  private static final String DB_PASSWORD = props.getPassword();
   private static JDBCConnector instance = null;
 
   public Connection getConnection() {
