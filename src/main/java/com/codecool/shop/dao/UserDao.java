@@ -6,7 +6,7 @@ public interface UserDao {
 
     void add(User user);
 
-    User findUser(User user);
+    User findUser(String email);
 
 
 

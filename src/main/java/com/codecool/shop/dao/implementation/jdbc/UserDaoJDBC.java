@@ -27,11 +27,11 @@ public class UserDaoJDBC implements UserDao {
 
 
     @Override
-    public User findUser(User user) {
+    public User findUser(String email) {
         try (Connection connection = JDBCConnector.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement("SELECT * FROM \"user\" WHERE email=?");
         ) {
-            statement.setString(1, user.getEmail());
+            statement.setString(1, email);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()){
                 User newUser = new User(resultSet.getString("name"),
