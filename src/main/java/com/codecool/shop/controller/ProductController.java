@@ -58,6 +58,8 @@ public class ProductController extends HttpServlet {
             shoppingCart.remove(Integer.parseInt(req.getParameter("remove")));
         }
 
+
+
         resp.sendRedirect(req.getHeader("referer"));
     }
 }

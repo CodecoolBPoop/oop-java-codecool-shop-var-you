@@ -67,12 +67,12 @@
 .navcontainer{
     margin: 5px;
 }
-#dropdownMenuButton1, #dropdownMenuButton2, #dropdownMenuButton3{
+#dropdownMenuButton1, #dropdownMenuButton2, #dropdownMenuButton3 {
     float:left;
     margin: 5px;
 }
 
-#viewcartbutton{
+#viewcartbutton, #regbutton, #loginbutton {
     float:right;
     margin-right: 15px;
 }
@@ -94,4 +94,19 @@ td {
     padding-left: 20px;
 }
 
+#regbutton, #loginbutton {
+    vert-align: middle;
+    width: 174px;
+    margin-top: 2px;
+}
+
+
+
+#loginbutton {
+    margin-right: 4px;
+}
+
+#inputsdiv {
+    margin-right: auto;
+}
 
