@@ -7,8 +7,8 @@ import java.sql.*;
 
 public class JDBCConnector {
   private static final String DATABASE = "jdbc:postgresql://localhost:5432/codecoolshop";
-  private static final String DB_USER = Props.getInstance().getUsername();
-  private static final String DB_PASSWORD = Props.getInstance().getPassword();
+  private static final String DB_USER = "tilla"; //Props.getInstance().getUsername();
+  private static final String DB_PASSWORD = "xxx"; //Props.getInstance().getPassword();
   private static JDBCConnector instance = null;
 
   public Connection getConnection() {
