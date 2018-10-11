@@ -16,7 +16,7 @@ import java.io.PrintWriter;
 public class LoginHandler extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse response) throws IOException {
 
         PrintWriter out = response.getWriter();
 
@@ -27,7 +27,7 @@ public class LoginHandler extends HttpServlet {
             if (password.equals(user.getPassword())) {
                 HttpSession session = req.getSession();
                 session.setAttribute("user", user);
-                out.println("<script>alert('Login successful');</script>");
+                response.sendRedirect("/");
             } else {
                 out.println("<script>alert('Invalid login data');</script>");
             }

@@ -110,3 +110,10 @@ td {
     margin-right: auto;
 }
 
+#welcomeUser{
+    float: right;
+    font-size: large;
+    font-weight: bolder;
+    margin-right: 5px;
+}
+

@@ -26,10 +26,16 @@
                     </div>
                 </div>
         <div id="dropdownMenuButton3" th:replace="shopping_cart.html :: cart"></div>
+
+        <div th:if="${username}">
+            <div id="welcomeUser" th:text="'Welcome, ' + ${username} + '!'"></div>
+        </div>
+    <div th:unless="${username}">
         <div id="login_register" th:replace="login_register_modal.html :: login_register"></div>
             <button type="button"  data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-dark" id="loginbutton">Login</button><button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModal" id="regbutton">Register</button>
         </form>
         </div>
+</div>
     </div>
 
 
