@@ -35,7 +35,9 @@ public class SupplierDaoJDBC implements SupplierDao {
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()){
-                return new Supplier(resultSet.getString("name"),
+                return new Supplier(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
                         resultSet.getString("description"));
             }
         }  catch (SQLException e) {
@@ -67,7 +69,9 @@ public class SupplierDaoJDBC implements SupplierDao {
         ) {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){
-                Supplier actTodo = new Supplier(resultSet.getString("name"),
+                Supplier actTodo = new Supplier(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
                         resultSet.getString("description")) ;
                 resultList.add(actTodo);
             }

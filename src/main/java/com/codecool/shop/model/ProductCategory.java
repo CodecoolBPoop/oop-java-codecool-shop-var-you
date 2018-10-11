@@ -6,11 +6,19 @@ import java.util.List;
 public class ProductCategory extends BaseModel {
     private String department;
     private List<Product> products;
+    private int id;
 
     public ProductCategory(String name, String department, String description) {
         super(name);
         this.department = department;
         this.products = new ArrayList<>();
+    }
+
+    public ProductCategory(int id, String name, String department, String description) {
+        super(name);
+        this.department = department;
+        this.products = new ArrayList<>();
+        this.id = id;
     }
 
     public String getDepartment() {
@@ -43,5 +51,10 @@ public class ProductCategory extends BaseModel {
                 this.name,
                 this.department,
                 this.description);
+    }
+
+    @Override
+    public int getId() {
+        return id;
     }
 }

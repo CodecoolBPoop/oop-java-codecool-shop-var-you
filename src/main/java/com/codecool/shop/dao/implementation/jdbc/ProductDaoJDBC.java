@@ -86,12 +86,13 @@ public class ProductDaoJDBC implements ProductDao {
     @Override
     public  List<Product> getAll() {
         try (Connection connection = JDBCConnector.getInstance().getConnection();
-             PreparedStatement statement = connection.prepareStatement("SELECT name, CAST(default_price AS FLOAT), description FROM product");) {
+             PreparedStatement statement = connection.prepareStatement("SELECT id, name, CAST(default_price AS FLOAT), description FROM product");) {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){
                 //Product(String name, float defaultPrice, String currencyString, String description, ProductCategory productCategory, Supplier supplier)
                 //public Product(String name, float defaultPrice,String description)
                 Product prod = new Product(
+                        resultSet.getInt("id"),
                         resultSet.getString("name"),
                         resultSet.getFloat("default_price"),
                         resultSet.getString("description")
