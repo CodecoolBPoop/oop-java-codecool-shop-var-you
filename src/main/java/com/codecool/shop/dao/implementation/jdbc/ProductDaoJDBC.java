@@ -22,12 +22,15 @@ public class ProductDaoJDBC implements ProductDao {
     private JDBCConnector db = JDBCConnector.getInstance();
 
 
+
     @Override
     public void add(Product product) {
       Supplier supplier;
       ProductCategory productCategory;
       supplier = product.getSupplier();
       productCategory = product.getProductCategory();
+
+
 
         try (Connection connection = JDBCConnector.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement("INSERT INTO product (name, default_price, description, product_category, supplier, currency) " +
@@ -82,9 +85,24 @@ public class ProductDaoJDBC implements ProductDao {
 
     @Override
     public  List<Product> getAll() {
+        try (Connection connection = JDBCConnector.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement("SELECT name, CAST(default_price AS FLOAT), description FROM product");) {
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                //Product(String name, float defaultPrice, String currencyString, String description, ProductCategory productCategory, Supplier supplier)
+                //public Product(String name, float defaultPrice,String description)
+                Product prod = new Product(
+                        resultSet.getString("name"),
+                        resultSet.getFloat("default_price"),
+                        resultSet.getString("description")
+                );
+                data.add(prod);
+            }
+        }  catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return data;
 
-
-      return null;
 
     }
 

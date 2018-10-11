@@ -21,7 +21,7 @@ public class SupplierDaoJDBC implements SupplierDao {
         ) {
             statement.setString(1, supplier.getName());
             statement.setString(2, supplier.getDescription());
-            ResultSet resultSet = statement.executeQuery();
+            statement.executeUpdate();
         }  catch (SQLException e) {
             e.printStackTrace();
         }
