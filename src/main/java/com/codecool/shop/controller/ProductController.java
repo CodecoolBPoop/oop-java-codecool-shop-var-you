@@ -63,9 +63,9 @@ public class ProductController extends HttpServlet {
             shoppingCart.remove(Integer.parseInt(req.getParameter("remove")));
         }
 
-
         HttpSession session = req.getSession();
         session.setAttribute("cart", shoppingCart);
+
 
         resp.sendRedirect(req.getHeader("referer"));
     }
