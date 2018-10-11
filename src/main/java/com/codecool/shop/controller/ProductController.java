@@ -66,6 +66,7 @@ public class ProductController extends HttpServlet {
         HttpSession session = req.getSession();
         session.setAttribute("cart", shoppingCart);
 
+
         resp.sendRedirect(req.getHeader("referer"));
     }
 }
