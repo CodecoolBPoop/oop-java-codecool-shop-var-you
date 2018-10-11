@@ -14,7 +14,7 @@ public class UserDaoJDBC implements UserDao {
     @Override
     public void add(User user) {
         try (Connection connection = JDBCConnector.getInstance().getConnection();
-             PreparedStatement statement = connection.prepareStatement("INSERT INTO user (name, email, passwd) VALUES (?, ?, ?) ON CONFLICT DO NOTHING;");
+             PreparedStatement statement = connection.prepareStatement("INSERT INTO \"user\" (name, email, passwd) VALUES (?, ?, ?) ON CONFLICT DO NOTHING;");
         ) {
             statement.setString(1, user.getName());
             statement.setString(2, user.getEmail());
@@ -29,7 +29,7 @@ public class UserDaoJDBC implements UserDao {
     @Override
     public User findUser(User user) {
         try (Connection connection = JDBCConnector.getInstance().getConnection();
-             PreparedStatement statement = connection.prepareStatement("SELECT * FROM user WHERE email=?");
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM \"user\" WHERE email=?");
         ) {
             statement.setString(1, user.getEmail());
             ResultSet resultSet = statement.executeQuery();

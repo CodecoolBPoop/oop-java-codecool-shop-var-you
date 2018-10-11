@@ -22,3 +22,8 @@ $(".cart-button").click(function () {
     });
     $("#cartModal").modal('toggle');
 });
+
+$("#regbutton").click(function () {
+    var nameInput = "<br><br><input type='text' name='name_input' id='name_input' placeholder='Name'>";
+    $("#inputsdiv").append(nameInput);
+});
