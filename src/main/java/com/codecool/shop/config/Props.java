@@ -65,7 +65,6 @@ public class Props {
         return variables.get("password");
     }
 
-
     public String getDAOtype(){
         return variables.get("DAOtype");
     }

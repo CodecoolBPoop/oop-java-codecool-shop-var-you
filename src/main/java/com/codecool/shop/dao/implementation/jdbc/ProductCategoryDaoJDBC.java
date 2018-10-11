@@ -21,7 +21,7 @@ public class ProductCategoryDaoJDBC implements ProductCategoryDao {
                 statement.setString(1, category.getName());
                 statement.setString(2, category.getDepartment());
                 statement.setString(3, category.getDescription());
-                ResultSet resultSet = statement.executeQuery();
+                statement.executeUpdate();
             }  catch (SQLException e) {
                 e.printStackTrace();
             }
