@@ -11,11 +11,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
 
 @WebServlet(urlPatterns = {"/"})
 public class ProductController extends HttpServlet {
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -28,6 +30,7 @@ public class ProductController extends HttpServlet {
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
+
 
         context.setVariable("recipient", "World");
         context.setVariable("allproducts", productCategoryDataStore.getAll());
@@ -50,6 +53,8 @@ public class ProductController extends HttpServlet {
         ProductDao productDataStore = DaoSwitcher.getInstance().getProductDao();
         ShoppingCartDao shoppingCart = DaoSwitcher.getInstance().getShopplingCartDao();
 
+
+
         if (req.getParameter("id") != null) {
             shoppingCart.add(productDataStore.find(Integer.parseInt(req.getParameter("id"))));
         } else if (req.getParameter("add") != null) {
@@ -58,7 +63,8 @@ public class ProductController extends HttpServlet {
             shoppingCart.remove(Integer.parseInt(req.getParameter("remove")));
         }
 
-
+        HttpSession session = req.getSession();
+        session.setAttribute("cart", shoppingCart);
 
         resp.sendRedirect(req.getHeader("referer"));
     }
