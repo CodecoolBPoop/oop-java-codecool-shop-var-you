@@ -1,10 +1,7 @@
 package com.codecool.shop.dao;
 
 import com.codecool.shop.config.Props;
-import com.codecool.shop.dao.implementation.jdbc.ProductCategoryDaoJDBC;
-import com.codecool.shop.dao.implementation.jdbc.ProductDaoJDBC;
-import com.codecool.shop.dao.implementation.jdbc.ShoppingCartDaoJDBC;
-import com.codecool.shop.dao.implementation.jdbc.SupplierDaoJDBC;
+import com.codecool.shop.dao.implementation.jdbc.*;
 import com.codecool.shop.dao.implementation.mem.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.mem.ProductDaoMem;
 import com.codecool.shop.dao.implementation.mem.ShoppingCartDaoMem;
@@ -36,6 +33,16 @@ public final class DaoSwitcher {
             instance = new DaoSwitcher();
         }
         return instance;
+    }
+
+    public UserDao getUserDao(){
+        switch (activeDao) {
+            case MEM:
+                return null;
+            case JDBC:
+                return new UserDaoJDBC();
+        }
+        return new UserDaoJDBC();
     }
 
     public ProductDao getProductDao(){

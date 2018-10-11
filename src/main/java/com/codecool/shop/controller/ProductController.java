@@ -3,6 +3,7 @@ package com.codecool.shop.controller;
 import com.codecool.shop.dao.*;
 import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.config.TemplateEngineUtil;
+import com.codecool.shop.model.User;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -28,10 +29,15 @@ public class ProductController extends HttpServlet {
         websiteName.put("name", "CodeCool Survival Shop");
 
 
+
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
 
+        User user = (User)req.getSession().getAttribute("user");
 
+        if (user != null) {
+            context.setVariable("username", user.getName());
+        }
         context.setVariable("recipient", "World");
         context.setVariable("allproducts", productCategoryDataStore.getAll());
         context.setVariable("allsuppliers", supplierDataStore.getAll());
