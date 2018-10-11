@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -22,8 +23,10 @@ public class CartRequest extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse response) throws IOException {
 
         /*cart setup */
-        ShoppingCartDao shoppingCartDao = ShoppingCartDaoMem.getInstance();
-        List<Product> cartContent = shoppingCartDao.getAll();
+        HttpSession session = req.getSession();
+
+        ShoppingCartDao cart = (ShoppingCartDao)session.getAttribute("cart");
+        List<Product> cartContent = cart.getAll();
         float total = 0;
 
 

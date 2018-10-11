@@ -22,3 +22,18 @@ $(".cart-button").click(function () {
     });
     $("#cartModal").modal('toggle');
 });
+
+$("#regbutton").click(function () {
+    $("#reglogin").empty();
+    var regStuff = "<form method='POST' action='/register'>" + "<div id='inputsdiv'><input name='email' placeholder='email'><br><br><input type='password' name='password' placeholder='password'>" +
+        "<br><br><input type='text' name='name_input' id='name_input' placeholder='Name'>" +
+        "</div><button type='submit' name='register' class='btn btn-primary'>Register</button></form>";
+    $("#reglogin").append(regStuff);
+});
+
+$("#loginbutton").click(function () {
+    $("#reglogin").empty();
+    var loginStuff = "<form method='POST' action='/login'>" + "<div id='inputsdiv'><input name='email' placeholder='email'><br><br><input type='password' name='password' placeholder='password'>" +
+        "</div><button type='submit' name='login' class='btn btn-primary'>Login</button></form>";
+    $("#reglogin").append(loginStuff);
+});

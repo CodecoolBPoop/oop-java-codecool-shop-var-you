@@ -6,9 +6,18 @@ import com.codecool.shop.model.ProductCategory;
 import java.sql.*;
 
 public class JDBCConnector {
-  private static final String DATABASE = "jdbc:postgresql://localhost:5432/codecoolshop";
-  private static final String DB_USER = "qwerox"; //Props.getInstance().getUsername();
-  private static final String DB_PASSWORD = "12345"; //Props.getInstance().getPassword();
+
+    private static String ConnenctStringBuilder() {
+        StringBuilder string = new StringBuilder();
+        string.append("jdbc:postgresql://localhost:5432/");
+        string.append(Props.getInstance().getDatabase());
+        return string.toString();
+    }
+
+
+  private static final String DATABASE = ConnenctStringBuilder();
+  private static final String DB_USER = Props.getInstance().getUsername();
+  private static final String DB_PASSWORD = Props.getInstance().getPassword();
   private static JDBCConnector instance = null;
 
   public Connection getConnection() {
