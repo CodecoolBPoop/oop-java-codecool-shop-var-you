@@ -38,7 +38,7 @@ public final class DaoSwitcher {
     public UserDao getUserDao(){
         switch (activeDao) {
             case MEM:
-                return null;
+                return new UserDaoJDBC();
             case JDBC:
                 return new UserDaoJDBC();
         }
