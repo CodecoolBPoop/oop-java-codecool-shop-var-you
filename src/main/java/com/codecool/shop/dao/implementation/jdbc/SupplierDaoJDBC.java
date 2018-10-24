@@ -12,7 +12,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SupplierDaoJDBC implements SupplierDao {
+    private static SupplierDaoJDBC instance = null;
 
+
+    public static SupplierDaoJDBC getInstance() {
+        if (instance == null) {
+            instance = new SupplierDaoJDBC();
+        }
+        return instance;
+    }
 
     @Override
     public void add(Supplier supplier) {

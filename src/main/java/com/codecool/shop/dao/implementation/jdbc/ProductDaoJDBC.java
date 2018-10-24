@@ -86,16 +86,19 @@ public class ProductDaoJDBC implements ProductDao {
     @Override
     public  List<Product> getAll() {
         try (Connection connection = JDBCConnector.getInstance().getConnection();
-             PreparedStatement statement = connection.prepareStatement("SELECT id, name, CAST(default_price AS FLOAT), description FROM product");) {
+            PreparedStatement statement = connection.prepareStatement("SELECT id, name, CAST(default_price AS FLOAT), description, product_category, supplier FROM product");) {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){
                 //Product(String name, float defaultPrice, String currencyString, String description, ProductCategory productCategory, Supplier supplier)
                 //public Product(String name, float defaultPrice,String description)
+                //Product(String name, float defaultPrice, String description, ProductCategory productCategory, Supplier supplier)
                 Product prod = new Product(
                         resultSet.getInt("id"),
                         resultSet.getString("name"),
                         resultSet.getFloat("default_price"),
-                        resultSet.getString("description")
+                        resultSet.getString("description"),
+                        ProductCategoryDaoJDBC.getInstance().find(resultSet.getInt("product_category")),
+                        SupplierDaoJDBC.getInstance().find(resultSet.getInt("supplier"))
                 );
                 data.add(prod);
             }
@@ -111,11 +114,57 @@ public class ProductDaoJDBC implements ProductDao {
 
     @Override
     public List<Product> getBy(Supplier supplier) {
-        return null;
+        int supplierId = supplier.getId();
+        try (Connection connection = JDBCConnector.getInstance().getConnection();
+            PreparedStatement statement = connection.prepareStatement("SELECT id, name, CAST(default_price AS FLOAT), description, product_category, supplier FROM product WHERE supplier = CAST (? AS INTEGER)");) {
+            statement.setString(1, String.valueOf(supplierId));
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                //Product(String name, float defaultPrice, String currencyString, String description, ProductCategory productCategory, Supplier supplier)
+                //public Product(String name, float defaultPrice,String description)
+                //Product(String name, float defaultPrice, String description, ProductCategory productCategory, Supplier supplier)
+                Product prod = new Product(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getFloat("default_price"),
+                        resultSet.getString("description"),
+                        ProductCategoryDaoJDBC.getInstance().find(resultSet.getInt("product_category")),
+                        SupplierDaoJDBC.getInstance().find(resultSet.getInt("supplier"))
+                );
+                data.add(prod);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return data;
     }
 
     @Override
     public List<Product> getBy(ProductCategory productCategory) {
-        return null;
+        int productCategoryId = productCategory.getId();
+        try (Connection connection = JDBCConnector.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement("SELECT id, name, CAST(default_price AS FLOAT), description, product_category, supplier FROM product WHERE product_category = CAST (? AS INTEGER)");) {
+            statement.setString(1, String.valueOf(productCategoryId));
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                //Product(String name, float defaultPrice, String currencyString, String description, ProductCategory productCategory, Supplier supplier)
+                //public Product(String name, float defaultPrice,String description)
+                //Product(String name, float defaultPrice, String description, ProductCategory productCategory, Supplier supplier)
+                Product prod = new Product(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getFloat("default_price"),
+                        resultSet.getString("description"),
+                        ProductCategoryDaoJDBC.getInstance().find(resultSet.getInt("product_category")),
+                        SupplierDaoJDBC.getInstance().find(resultSet.getInt("supplier"))
+                );
+                data.add(prod);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return data;
     }
 }

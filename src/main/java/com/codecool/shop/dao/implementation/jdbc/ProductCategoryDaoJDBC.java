@@ -13,6 +13,15 @@ import java.util.List;
 
 public class ProductCategoryDaoJDBC implements ProductCategoryDao {
 
+    private static ProductCategoryDaoJDBC instance = null;
+
+    public static ProductCategoryDaoJDBC getInstance() {
+        if (instance == null) {
+            instance = new ProductCategoryDaoJDBC();
+        }
+        return instance;
+    }
+
     @Override
     public void add(ProductCategory category) {
             try (Connection connection = JDBCConnector.getInstance().getConnection();
