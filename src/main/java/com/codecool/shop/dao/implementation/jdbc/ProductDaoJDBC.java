@@ -144,7 +144,8 @@ public class ProductDaoJDBC implements ProductDao {
     public List<Product> getBy(ProductCategory productCategory) {
         int productCategoryId = productCategory.getId();
         try (Connection connection = JDBCConnector.getInstance().getConnection();
-             PreparedStatement statement = connection.prepareStatement("SELECT id, name, CAST(default_price AS FLOAT), description, product_category, supplier FROM product WHERE product_category = CAST (? AS INTEGER)");) {
+             PreparedStatement statement = connection.prepareStatement("SELECT id, name, CAST(default_price AS FLOAT), description," +
+                                          " product_category, supplier FROM product WHERE product_category = CAST (? AS INTEGER)");) {
             statement.setString(1, String.valueOf(productCategoryId));
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
