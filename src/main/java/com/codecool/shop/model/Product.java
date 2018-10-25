@@ -8,6 +8,19 @@ public class Product extends BaseModel {
     private Currency defaultCurrency;
     private ProductCategory productCategory;
     private Supplier supplier;
+    private int id;
+
+
+    public Product(String name, float defaultPrice, String description) {
+        super(name, description);
+        this.setPrice(defaultPrice);
+    }
+
+    public Product(int id, String name, float defaultPrice, String description) {
+        super(name, description);
+        this.setPrice(defaultPrice);
+        this.id = id;
+    }
 
 
     public Product(String name, float defaultPrice, String currencyString, String description, ProductCategory productCategory, Supplier supplier) {
@@ -16,6 +29,21 @@ public class Product extends BaseModel {
         this.setSupplier(supplier);
         this.setProductCategory(productCategory);
     }
+
+    public Product(String name, float defaultPrice, String description, ProductCategory productCategory, Supplier supplier) {
+        super(name, description);
+        this.setPrice(defaultPrice);
+        this.setSupplier(supplier);
+        this.setProductCategory(productCategory);
+    }
+
+  public Product(int id, String name, float defaultPrice, String description, ProductCategory productCategory, Supplier supplier) {
+    super(name, description);
+    this.id = id;
+    this.setPrice(defaultPrice);
+    this.setSupplier(supplier);
+    this.setProductCategory(productCategory);
+  }
 
     public float getDefaultPrice() {
         return defaultPrice;
@@ -33,8 +61,17 @@ public class Product extends BaseModel {
         this.defaultCurrency = defaultCurrency;
     }
 
+//    public String getPrice() {
+//        return String.valueOf(this.defaultPrice) + " " + this.defaultCurrency.toString();
+//    }
+
     public String getPrice() {
-        return String.valueOf(this.defaultPrice) + " " + this.defaultCurrency.toString();
+        return String.valueOf(this.defaultPrice); //+ " " + this.defaultCurrency.toString();
+    }
+
+    public void setPrice(float price) {
+        this.defaultPrice = price;
+
     }
 
     public void setPrice(float price, String currency) {
@@ -74,5 +111,10 @@ public class Product extends BaseModel {
                 this.defaultCurrency.toString(),
                 this.productCategory.getName(),
                 this.supplier.getName());
+    }
+
+    @Override
+    public int getId() {
+        return id;
     }
 }

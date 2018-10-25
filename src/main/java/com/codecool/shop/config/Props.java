@@ -10,7 +10,7 @@ import java.util.Properties;
 public class Props {
     private static Props instance = null;
 
-    private Props() {
+    public Props() {
         this.getProperties();
     }
 
@@ -64,6 +64,7 @@ public class Props {
     public String getPassword(){
         return variables.get("password");
     }
+
 
     public String getDAOtype(){
         return variables.get("DAOtype");

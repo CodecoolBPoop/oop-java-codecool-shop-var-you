@@ -13,6 +13,15 @@ import java.util.List;
 
 public class ProductCategoryDaoJDBC implements ProductCategoryDao {
 
+    private static ProductCategoryDaoJDBC instance = null;
+
+    public static ProductCategoryDaoJDBC getInstance() {
+        if (instance == null) {
+            instance = new ProductCategoryDaoJDBC();
+        }
+        return instance;
+    }
+
     @Override
     public void add(ProductCategory category) {
             try (Connection connection = JDBCConnector.getInstance().getConnection();
@@ -36,7 +45,9 @@ public class ProductCategoryDaoJDBC implements ProductCategoryDao {
         ) {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){
-                ProductCategory actTodo = new ProductCategory(resultSet.getString("name"),
+                ProductCategory actTodo = new ProductCategory(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
                         resultSet.getString("department"),
                         resultSet.getString("description")) ;
                 resultList.add(actTodo);
@@ -57,7 +68,9 @@ public class ProductCategoryDaoJDBC implements ProductCategoryDao {
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()){
-                ProductCategory prodCat = new ProductCategory(resultSet.getString("name"),
+                ProductCategory prodCat = new ProductCategory(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
                         resultSet.getString("department"),
                         resultSet.getString("description")) ;
                 return prodCat;
