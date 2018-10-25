@@ -28,6 +28,7 @@
         <div id="dropdownMenuButton3" th:replace="shopping_cart.html :: cart"></div>
 
         <div th:if="${username}">
+             <!-- place for logout button -->
             <div id="welcomeUser" th:text="'Welcome, ' + ${username} + '!'"></div>
         </div>
     <div th:unless="${username}">
